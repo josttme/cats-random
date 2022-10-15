@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		<meta name="robots" content="index,follow" />
+		<meta name="description" content="gatos aleatorios" />
+		<title>Gatos Aleatorios</title>
+	</head>
+	<body
+		class="bg-primary font-Montserrat text-primary scrollbar scrollbar-track-[#1d1e22] scrollbar-thumb-gray-600 scrollbar-thumb-rounded-lg"
+	>
+		<section class="mx-auto max-w-4xl">
+			<span id="error"></span>
+			<section class="w-ful grid">
+				<h1 class="mt-14 mb-5 text-center text-3xl font-bold text-primary">Gatos Aleatios</h1>
+				<section class="relative grid min-h-[500px] w-full place-content-center px-3 align-[500px]">
+					<div id="contentCatsRandom" class="columns-2 md:columns-3"></div>
+					<div
+						id="preloader"
+						class="absolute top-0 left-0 grid hidden h-full w-full place-content-center bg-secondary"
+					>
+						<button class="btn btn-square loading h-52 w-52 border-transparent bg-secondary"></button>
+					</div>
+				</section>
+				<div class="grid h-20 w-full place-content-center">
+					<button
+						id="reload"
+						class="btn bg-btnColor text-xl font-bold lowercase text-primary hover:bg-btnColor"
+					>
+						Recargar
+					</button>
+				</div>
+			</section>
+			<form id="uploadingForm" class="my-10 mx-auto md:max-w-xl">
+				<input
+					id="file"
+					type="file"
+					name="file"
+					class="mx-auto grid w-10/12 cursor-pointer rounded-xl bg-secondary p-2 px-5 file:cursor-pointer file:rounded-full file:border-0 file:bg-secondary file:py-2 file:px-4 file:text-sm file:font-semibold file:text-secondary hover:file:bg-violet-100"
+					onchange="updatePreview(this, 'image-preview')"
+				/>
+				<img id="image-preview" src="" class="mt-5 rounded-xl" />
+				<div class="mx-auto w-48">
+					<button type="button" id="upload" class="btn mt-5 w-full">Subir foto de gato</button>
+				</div>
+			</form>
+		</section>
+		<section>
+			<h2 class="py-10 text-center text-3xl font-bold">Favoritos</h2>
+			<section
+				class="w-full columns-2 px-3 pb-5 md:columns-3 lg:mx-auto lg:max-w-6xl lg:columns-4"
+				id="contentFavotites"
+			></section>
+		</section>
+		<script type="module" src="/main.js"></script>
+		<script>
+			function updatePreview(input, target) {
+				let file = input.files[0]
+				let reader = new FileReader()
+
+				reader.readAsDataURL(file)
+				reader.onload = function () {
+					let img = document.getElementById(target)
+					img.src = reader.result
+				}
+			}
+		</script>
+	</body>
+</html>

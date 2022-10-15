@@ -1,0 +1,9 @@
+.articleCats {
+	@apply relative p-1;
+}
+.imgCats {
+	@apply rounded-xl;
+}
+.buttonHeart {
+	@apply absolute bottom-2 right-3;
+}
